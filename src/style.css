@@ -19,3 +19,25 @@ a:visited {
   color:
     #005580;
 }
+
+.page-link {
+  color: #004466 !important;
+  background-color: #e6f7ff !important;
+  border-color: #004466 !important;
+  border-radius: 50% !important;
+}
+
+.page-item.active .page-link {
+  background-color: #0dcaf0 !important;
+  color: #ffffff !important;
+  border-color: #0dcaf0 !important;
+}
+
+.page-item.disabled .page-link {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.pagination {
+  gap: 8px;
+}
