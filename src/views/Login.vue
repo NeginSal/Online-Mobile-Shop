@@ -1,7 +1,7 @@
 <template>
   <div class="row">
-    <h1 class="text-center mt-5">Login Form</h1>
-    <div class="row g-3 w-50 mx-auto">
+    <h1 class="text-center mt-5 title-text">Login Form</h1>
+    <div class="row g-3 w-50 mx-auto border shadow-lg p-3 rounded-3">
       <div class="col-12 mb-3">
         <label for="exampleInputEmail1" class="form-label">Email address</label>
         <input

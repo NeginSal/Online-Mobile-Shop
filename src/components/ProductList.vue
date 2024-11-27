@@ -1,12 +1,16 @@
 <template>
-  <h1 class="mt-3 text-center title-text">Product List</h1>
-  <div class="row row-cols-1 row-cols-md-3 g-3 mt-3 p-3 text-center">
-    <div class="col shadow-sm p-3 rounded" v-for="product in store.products" :key="product.id">
-      <div class="card p-3">
-        <img src="../assets/phone.jpg" class="card-img-top border-bottom" alt="...">
+  <h1 class="my-3 text-center title-text">Product List</h1>
+  <div v-if="store.loading" class="d-flex justify-content-center align-items-center mt-5">
+    <div class="spinner-border text-info" role="status" style="width: 10rem; height: 10rem;">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  <div v-else class="row g-3">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3" v-for="product in store.products" :key="product.id">
+      <div class="card shadow-sm rounded border border-1 p-3 text-center">
+        <img src="../assets/phone.jpg" class="card-img-top border rounded-3" alt="..." style="height: 150px;">
         <h5 class="card-title my-3">{{ product.title }} ({{ product.color }})</h5>
-        <!-- <p class="card-text">{{ product.description }}</p> -->
-        <button type="button" class="btn btn-outline-info" @click="addToCart(product)">Add to Cart</button>
+        <button type="button" class="btn btn-info" @click="addToCart(product)">Add to Cart</button>
       </div>
     </div>
   </div>

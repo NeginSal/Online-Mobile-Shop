@@ -1,43 +1,29 @@
 <template>
-  <div class="row w-50 mx-auto">
-    <h3 class="text-center my-5">Create Product</h3>
-    <div class="row g-1">
+  <div class="row mx-auto">
+    <h3 class="my-5 text-center title-text">Create Product</h3>
       <div class="col-12 mb-3">
         <label for="titleInput" class="form-label">Title:</label>
-        <input
-          v-model="title"
-          :class="{'is-invalid': errors.title}"
-          class="form-control"
-          id="titleInput"
-        />
+        <input v-model="title" :class="{ 'is-invalid': errors.title }" class="form-control" id="titleInput" />
         <div v-if="errors.title" class="invalid-feedback">
           {{ errors.title }}
         </div>
       </div>
-
       <div class="col-12 mb-3">
         <label for="colorInput" class="form-label">Color:</label>
-        <input
-          v-model="color"
-          :class="{'is-invalid': errors.color}"
-          class="form-control"
-          id="colorInput"
-        />
+        <input v-model="color" :class="{ 'is-invalid': errors.color }" class="form-control" id="colorInput" />
         <div v-if="errors.color" class="invalid-feedback">
           {{ errors.color }}
         </div>
       </div>
-
       <div class="col-12 mb-3">
-        <button
-          type="button"
-          class="btn btn-success w-100"
-          @click="addProduct"
-        >
+        <button v-if="store.loading" class="btn btn-success w-100" type="button" disabled>
+          <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+          <span role="status">Loading...</span>
+        </button>
+        <button v-else type="button" class="btn btn-success w-100" @click="addProduct">
           Add Product
         </button>
       </div>
-    </div>
   </div>
 </template>
 
@@ -87,13 +73,13 @@ export default {
           title: title.value,
           color: color.value,
         });
-        alert("Product added!");
+        // alert("Product added!");
         title.value = "";
         color.value = "";
       }
     };
 
-    return { title, color, errors, addProduct };
+    return { title, color, errors, addProduct, store };
   },
 };
 </script>

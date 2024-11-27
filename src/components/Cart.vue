@@ -1,13 +1,17 @@
 <template>
   <div>
-    <h1 class="mt-3 text-center title-text">Your Cart</h1>
-    <div class="row row-cols-1 row-cols-md-4 g-3 mt-3 p-3 text-center">
-      <div class="col shadow-sm" v-for="item in store.cart" :key="item.id">
-        <div class="card p-3">
-          <img src="../assets/phone.jpg" class="card-img-top border rounded-3" alt="...">
+    <h1 class="my-4 text-center title-text">Your Cart</h1>
+    <div v-if="store.loading" class="d-flex justify-content-center align-items-center mt-5">
+      <div class="spinner-border text-info" role="status" style="width: 10rem; height: 10rem;">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+    <div v-else class="row g-3">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3" v-for="item in store.cart" :key="item.id">
+        <div class="card shadow-sm rounded border border-1 p-3 text-center">
+          <img src="../assets/phone.jpg" class="card-img-top border rounded-3" alt="..." style="height: 150px;">
           <h5 class="card-title my-3">{{ item.title }} ({{ item.quantity }})</h5>
-          <!-- <p class="card-text">{{ product.description }}</p> -->
-          <button type="button" class="btn btn-outline-success" @click="removeFromCart(item.id)">Remove</button>
+          <button type="button" class="btn btn-outline-danger" @click="removeFromCart(item.id)">Remove</button>
         </div>
       </div>
     </div>
