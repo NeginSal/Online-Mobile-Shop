@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- Search Bar -->
     <div class="d-flex justify-content-between align-items-baseline my-4 border p-3 rounded">
       <h1 class="text-center title-text">Product List</h1>
       <div class="input-group" style="width: 400px;">
@@ -9,21 +8,19 @@
       </div>
     </div>
 
-    <!-- Loading Spinner -->
     <div v-if="store.loading" class="d-flex justify-content-center align-items-center mt-5">
       <div class="spinner-border text-info" role="status" style="width: 10rem; height: 10rem;">
         <span class="visually-hidden">Loading...</span>
       </div>
     </div>
 
-    <!-- Product List -->
     <div v-else class="border p-3 rounded vh-100">
       <div class="row g-3">
         <div class="col-12 col-sm-6 col-md-4 col-lg-3" v-for="product in paginatedProducts" :key="product.id">
-          <div class="card shadow-sm rounded border border-2 border-info-subtle p-3 text-center">
+          <div class="card shadow-sm rounded border border-2 border-info-subtle p-3 text-center" style="height: 300px;">
             <img src="../assets/phone.jpg" class="card-img-top border rounded-3" alt="..." style="height: 150px;" />
             <h5 class="card-title my-3">{{ product.title }} ({{ product.color }})</h5>
-            <button type="button" class="btn btn-info" @click="addToCart(product)">
+            <button type="button" class="btn btn-info mt-auto" @click="addToCart(product)" :disabled="!store.user">
               Add to Cart
             </button>
           </div>
@@ -50,7 +47,6 @@
     </nav>
   </div>
 </template>
-
 
 <script>
 import { useStore } from '../stores/store';

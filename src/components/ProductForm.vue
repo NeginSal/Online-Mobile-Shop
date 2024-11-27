@@ -1,33 +1,42 @@
 <template>
   <div class="row mx-auto">
     <h3 class="my-5 text-center title-text">Create Product</h3>
-    <div class="col-12 mb-3">
-      <label for="titleInput" class="form-label">Title:</label>
-      <input v-model="title" :class="{ 'is-invalid': errors.title }" class="form-control" id="titleInput"
-        @blur="validateTitle" />
-      <div v-if="errors.title" class="invalid-feedback">
-        {{ errors.title }}
+    <template v-if="store.user">
+      <div class="col-12 mb-3">
+        <label for="titleInput" class="form-label">Title:</label>
+        <input v-model="title" :class="{ 'is-invalid': errors.title }" class="form-control" id="titleInput"
+          @blur="validateTitle" />
+        <div v-if="errors.title" class="invalid-feedback">
+          {{ errors.title }}
+        </div>
       </div>
-    </div>
-    <div class="col-12 mb-3">
-      <label for="colorInput" class="form-label">Color:</label>
-      <input v-model="color" :class="{ 'is-invalid': errors.color }" class="form-control" id="colorInput"
-        @blur="validateColor" />
-      <div v-if="errors.color" class="invalid-feedback">
-        {{ errors.color }}
+      <div class="col-12 mb-3">
+        <label for="colorInput" class="form-label">Color:</label>
+        <input v-model="color" :class="{ 'is-invalid': errors.color }" class="form-control" id="colorInput"
+          @blur="validateColor" />
+        <div v-if="errors.color" class="invalid-feedback">
+          {{ errors.color }}
+        </div>
       </div>
-    </div>
-    <div class="col-12 mb-3">
-      <button v-if="store.loading" class="btn btn-success w-100" type="button" disabled>
-        <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-        <span role="status">Loading...</span>
-      </button>
-      <button v-else type="button" class="btn btn-success w-100" @click="addProduct">
-        Add Product
-      </button>
-    </div>
+      <div class="col-12 mb-3">
+        <button v-if="store.loading" class="btn btn-success w-100" type="button" disabled>
+          <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+          <span role="status">Loading...</span>
+        </button>
+        <button v-else type="button" class="btn btn-success w-100" @click="addProduct">
+          Add Product
+        </button>
+      </div>
+    </template>
+
+    <template v-else>
+      <div class="alert alert-danger text-center">
+        You must be logged in to create a product.
+      </div>
+    </template>
   </div>
 </template>
+
 <script>
 import { useStore } from "../stores/store";
 import { ref } from "vue";

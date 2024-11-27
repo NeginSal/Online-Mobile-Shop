@@ -13,7 +13,6 @@
 import ProductForm from '../components/ProductForm.vue';
 import ProductList from '../components/ProductList.vue';
 
-
 </script>
 
 <style scoped></style>
