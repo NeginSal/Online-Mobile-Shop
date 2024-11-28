@@ -40,3 +40,15 @@ a:visited {
 .pagination {
   gap: 8px;
 }
+
+.card:hover {
+  border: 1px solid #0dcaf0 !important;
+}
+
+.card-title {
+  min-height: 60px;
+}
+
+.card-text {
+  min-height: 48px;
+}

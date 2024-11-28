@@ -8,43 +8,45 @@
       </div>
     </div>
 
-    <div v-if="store.loading" class="d-flex justify-content-center align-items-center mt-5">
+    <div v-if="store.loading" class="d-flex justify-content-center align-items-center my-5">
       <div class="spinner-border text-info" role="status" style="width: 10rem; height: 10rem;">
         <span class="visually-hidden">Loading...</span>
       </div>
     </div>
 
-    <div v-else class="border p-3 rounded vh-100">
+    <div v-else class="border-top p-3">
       <div class="row g-3">
         <div class="col-12 col-sm-6 col-md-4 col-lg-3" v-for="product in paginatedProducts" :key="product.id">
-          <div class="card shadow-sm rounded border border-2 border-info-subtle p-3 text-center" style="height: 300px;">
+          <div class="card shadow-sm rounded border border-2 p-2 text-center h-100">
             <img src="../assets/phone.jpg" class="card-img-top border rounded-3" alt="..." style="height: 150px;" />
-            <h5 class="card-title my-3">{{ product.title }} ({{ product.color }})</h5>
+            <p class="card-title fw-bold fs-5">{{ product.title }}</p>
+            <p class="card-text">{{ product.color }}</p>
             <button type="button" class="btn btn-info mt-auto" @click="addToCart(product)" :disabled="!store.user">
               Add to Cart
             </button>
           </div>
         </div>
       </div>
+
+      <!-- Pagination -->
+      <nav class="my-5 bottom-0" v-if="totalPages > 1">
+        <ul class="pagination justify-content-center">
+          <li class="page-item" :class="{ disabled: currentPage === 1 }">
+            <button class="page-link" @click="prevPage">
+              <i class="bi bi-chevron-left"></i>
+            </button>
+          </li>
+          <li class="page-item" :class="{ active: page === currentPage }" v-for="page in totalPages" :key="page">
+            <button class="page-link" @click="goToPage(page)">{{ page }}</button>
+          </li>
+          <li class="page-item" :class="{ disabled: currentPage === totalPages }">
+            <button class="page-link" @click="nextPage">
+              <i class="bi bi-chevron-right"></i>
+            </button>
+          </li>
+        </ul>
+      </nav>
     </div>
-    <!-- Pagination Controls -->
-    <nav class="my-3" v-if="totalPages > 1">
-      <ul class="pagination justify-content-center">
-        <li class="page-item" :class="{ disabled: currentPage === 1 }">
-          <button class="page-link" @click="prevPage">
-            <i class="bi bi-chevron-left"></i>
-          </button>
-        </li>
-        <li class="page-item" :class="{ active: page === currentPage }" v-for="page in totalPages" :key="page">
-          <button class="page-link" @click="goToPage(page)">{{ page }}</button>
-        </li>
-        <li class="page-item" :class="{ disabled: currentPage === totalPages }">
-          <button class="page-link" @click="nextPage">
-            <i class="bi bi-chevron-right"></i>
-          </button>
-        </li>
-      </ul>
-    </nav>
   </div>
 </template>
 
